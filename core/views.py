@@ -3,6 +3,10 @@ from .models import Livro
 from .forms import LivroForm
 # Create your views here.
 def index(request):	
+	livros = Livro.objects.all()
+	contexto = {
+	'form': form
+	}
 	return render(request, 'index.html')
 
 def cadLiv(request):
@@ -14,3 +18,11 @@ def cadLiv(request):
 	'form': form
 	}
 	return render(request, 'cadLiv.html', contexto)
+
+def excluir(request, id):
+	livro = Livro.objects.get(pk=id)
+	livro.delete()
+	return('index')
+
+def login(request):
+	return render(request, 'login,html')
