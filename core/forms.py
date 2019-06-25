@@ -4,4 +4,4 @@ from .models import Livro
 class LivroForm(ModelForm):
 	class Meta:
 		model = Livro
-		fields = ['nome', 'autor', 'preco',]
+		fields = ['nome', 'autor', 'preco', 'imagem']
