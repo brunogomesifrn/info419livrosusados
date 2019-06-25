@@ -126,3 +126,5 @@ MEDIA_ROOT = 'media'
 
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = 'perfil'
+
+LOGIN_REDIRECT_URL = 'index'
