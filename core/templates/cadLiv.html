@@ -1,6 +1,6 @@
+<!DOCTYPE html>
 {% load static%}
 {% load widget_tweaks %}
-<!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
@@ -58,11 +58,10 @@
           
         <form method="POST" enctype="multipart/form-data">
           {% csrf_token %}
-          {{form}}
           <div class="control-group form-group">
             <div class="controls">
               <label>Nome: </label> 
-              {{form.nome|add_class:"form-control"}}
+              <p>{{form.nome|add_class:"form-control"}}</p> 
               
             </div>
           </div>
@@ -70,7 +69,7 @@
           <div class="control-group form-group">
             <div class="controls">
               <label>Autor: </label> 
-              {{form.nome|add_class:"form-control"}}
+              <p>{{form.autor|add_class:"form-control"}}</p> 
               
             </div>
           </div>
@@ -78,14 +77,14 @@
           <div class="control-group form-group">
             <div class="controls">
               <label>Preço: </label>  
-              {{form.preço|add_class:"form-control"}}
+              <p>{{form.preço|add_class:"form-control"}}</p>
             </div>
           </div>
 
           <div class="control-group form-group">
             <div class="controls">
               <label>Imagem: </label> 
-              {{form.imagem|add_class:"form-control"}}
+              <p>{{form.imagem|add_class:"form-control"}}</p>
               <p class="help-block"></p>
             </div>
           </div>
