@@ -36,16 +36,17 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Minha conta</a>
+            <a class="nav-link" href="{% url 'perfil' %}">Minha conta</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Cadastro</a>
+            <a class="nav-link" href="{% url 'registro' %}">Cadastro</a>
           </li>          
         </ul>
       </div>
     </div>
   </nav>
-  <p>Olá {{ user.name}}</p>
+  <p>Olá {{ user.username}}</p>
+  <p><a href="{% url 'dados' user.id %}">Dados Pessoais</a></p>
   <p><a href="{% url 'logout' %}">Sair</a></p>
 
 </body>
