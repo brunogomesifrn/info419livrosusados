@@ -67,8 +67,8 @@
           <a href="#" class="list-group-item">Terror</a>
           <a href="#" class="list-group-item">Drama</a>
           <a href="#" class="list-group-item">Suspense</a>
-          <a href="#" class="list-group-item">auto-ajuda</a>          
-          <a href="#" class="list-group-item">poemas/poesias</a>
+          <a href="#" class="list-group-item">Autoajuda</a>          
+          <a href="#" class="list-group-item">Poesia</a>
         </div>
 
       </div>
@@ -104,16 +104,16 @@
         </div>
 
         <div class="row">
-       		{% for livros in lista_livro %}
+       		{% for livro in livro_lista %}
           	  <div class="col-lg-4 col-md-6 mb-4">
           	
                 <div class="card h-100">             	
                   <a href="#"><img class="card-img-top" src="/media/{{livros.imagem}}" alt="" width="700px" height="400px"></a>
                   <div class="card-body">
                     <h4 class="card-title">
-                      <a href="#">{{livros.nome}}</a>
+                      <a href="#">{{livro.nome}}</a>
                     </h4>
-                    <h5>R${{livros.preco}}</h5>
+                    <h5>R${{livro.preco}}</h5>
                     
                   </div>
                   <div class="card-footer">
@@ -122,9 +122,9 @@
                 </div>
                 
           	  </div>
-              {% empty %}
-                <p>Nenhum livro cadastrado</p>
-                {% endfor %}  
+          {% empty %}
+              <p>Nenhum livro cadastrado</p>
+          {% endfor %}  
 
           
 
@@ -150,7 +150,7 @@
   </footer>
 
   <!-- Bootstrap core JavaScript -->
-  <script src="media/vendor/jquery/jquery.min.js"></script>
-  <script src="media/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="{% static 'jquery.min.js' %}"></script>
+  <script src="{% static 'bootstrap.bundle.min.js' %}"></script>
 </body>
 </html>
