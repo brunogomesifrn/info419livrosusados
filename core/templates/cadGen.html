@@ -36,7 +36,7 @@
             <a class="nav-link" href="{% url 'perfil' %}">Minha conta</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'registro' %}">Cadastro</a>
+            <a class="nav-link" href="{% url 'generos' %}">Lista de Gêneros</a>
           </li>          
         </ul>
       </div>
@@ -46,16 +46,13 @@
 <div class="container">
 
     <!-- Page Heading/Breadcrumbs -->
-    <h1 class="mt-12 mb-12">Cadastro de livro</h1>
+    <h1 class="mt-12 mb-12">Cadastro de Gêneros</h1>
 
    <hr />
 
     <!-- Content Row -->
     <div class="row">
       <div class="col-lg-12 mb-12">
-
-      <h3>Cadastro:</h3>
-          
         <form method="POST" enctype="multipart/form-data">
           {% csrf_token %}
           <div class="control-group form-group">
@@ -65,41 +62,8 @@
               
             </div>
           </div>
-          
-          <div class="control-group form-group">
-            <div class="controls">
-              <label>Autor: </label> 
-              <p>{{form.autor|add_class:"form-control"}}</p> 
-              
-            </div>
-          </div>
-
-          <div class="control-group form-group">
-            <div class="controls">
-              <label>Preço: </label>  
-              <p>{{form.preco|add_class:"form-control"}}</p>
-            </div>
-          </div>
-
-          <div class="control-group form-group">
-            <div class="controls">
-              <label>Imagem: </label> 
-              <p>{{form.imagem|add_class:"form-control"}}</p>
-              <p class="help-block"></p>
-            </div>
-          <div class="control-group form-group">
-            <div class="controls">
-              <label>Gêneros: </label> 
-              <p>{{form.generos|add_class:"form-control"}}</p>
-            </div>
-          </div>
-          <br />
           <button type="submit" class="btn btn-primary" id="sendMessageButton">Salvar</button>
         </form>
-
-
-
-
       </div>
     </div>
     <!-- /.row -->

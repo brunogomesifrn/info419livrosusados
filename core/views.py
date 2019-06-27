@@ -21,6 +21,23 @@ def cadLiv(request):
 	}
 	return render(request, 'cadLiv.html', contexto)
 
+def generos(request):	
+	livros = Livro.objects.all()
+	contexto = {
+		'lista_livro': livros
+	}
+	return render(request, 'generos.html', contexto)
+
+def cadGen(request):
+	form = LivroForm(request.POST or None, request.FILES or None)
+	if form.is_valid():
+		form.save()
+		return redirect(index)
+	contexto = {
+		'form': form
+	}
+	return render(request, 'cadGen.html', contexto)
+
 def excluir(request, id):
 	livro = Livro.objects.get(pk=id)
 	livro.delete()
