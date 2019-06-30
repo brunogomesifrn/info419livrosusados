@@ -27,7 +27,8 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
+        <ul class="navbar-nav ml-auto">/
+
           <li class="nav-item active">
             <a class="nav-link" href="{% url 'index' %}">Início
               <span class="sr-only">(current)</span>
@@ -63,14 +64,7 @@
         <h1 class="my-4">Sebo Online</h1>
         <div class="list-group">
           <a href="#" class="list-group-item">Todos os Livros</a>
-          <a href="#" class="list-group-item">Romance</a>
-          <a href="#" class="list-group-item">Ficção/Fantasia</a>
-          <a href="#" class="list-group-item">Biografia</a>
-          <a href="#" class="list-group-item">Terror</a>
-          <a href="#" class="list-group-item">Drama</a>
-          <a href="#" class="list-group-item">Suspense</a>
-          <a href="#" class="list-group-item">Autoajuda</a>          
-          <a href="#" class="list-group-item">Poesia</a>
+        
         </div>
 
       </div>
@@ -110,13 +104,13 @@
           	  <div class="col-lg-4 col-md-6 mb-4">
           	
                 <div class="card h-100">             	
-                  <a href="#"><img class="card-img-top" src="/media/{{livros.imagem}}" alt="" width="700px" height="400px"></a>
+                  <a href="#"><img class="card-img-top" src="/media/{{livro.imagem}}" alt="" width="700px" height="400px"></a>
                   <div class="card-body">
                     <h4 class="card-title">
                       <a href="#">{{livro.nome}}</a>
                     </h4>
                     <h5>R${{livro.preco}}</h5>
-                    
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#livro-detalhes"data-nome="{{livro.nome}}" data-autor="{{livro.autor}}" data-generos="{% for genero in livro.generos.all %}{{genero}}{% if not forloop.last %}, {% endif %}{% endfor %}" data-preco="{{livro.preco}}">Detalhes</button>
                   </div>
                   <div class="card-footer">
                     <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
@@ -150,9 +144,52 @@
     </div>
     <!-- /.container -->
   </footer>
-
+  <div id='livro-detalhes' class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"><span data="nome"></span></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Nome: <span data="nome"></span> </p>
+        <p>Autor: <span data="autor"></span> </p>
+        <p>Gênero: <span data="generos"></span> </p>
+        <p>Preço: R$ <span data="preco"></span></p>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
   <!-- Bootstrap core JavaScript -->
   <script src="{% static 'jquery.min.js' %}"></script>
+  <script src="{% static 'jquery.slim.min.js' %}"></script>
+  <script src="{% static 'bootstrap.min.js' %}"></script>
   <script src="{% static 'bootstrap.bundle.min.js' %}"></script>
+  <script type="text/javascript">
+    $(function(){
+      $('#livro-detalhes').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) // Botão que acionou o modal
+        var imagem = button.data('imagem')
+        var nome = button.data('nome')
+        var autor = button.data('autor')
+        var generos = button.data('generos')
+        var preco = button.data('preco') // Extrai informação dos atributos data-*
+        // Se necessário, você pode iniciar uma requisição AJAX aqui e, então, fazer a atualização em um callback.
+        // Atualiza o conteúdo do modal. Nós vamos usar jQuery, aqui. No entanto, você poderia usar uma biblioteca de data binding ou outros métodos.
+        var modal = $(this)
+        modal.find('span[data=imagem]').text(imagem)
+        modal.find('span[data=nome]').text(nome)
+        modal.find('span[data=autor]').text(autor)
+        modal.find('span[data=generos]').text(generos)
+        modal.find('span[data=preco]').text(preco)
+      })
+    })
+  </script>
 </body>
 </html>

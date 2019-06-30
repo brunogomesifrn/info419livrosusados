@@ -1,21 +1,33 @@
 from django.shortcuts import render, redirect
-from .models import Livro
-from .forms import LivroForm
+from .models import Livro, Generos
+from .forms import LivroForm, GenerosForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 # Create your views here.
 def index(request):	
 	livros = Livro.objects.all()
 	contexto = {
-		'lista_livro': livros
+		'livro_lista': livros
 	}
 	return render(request, 'index.html', contexto)
 
+def livros(request, id):
+	usuario = User.objects.get(pk=id)
+	livros = Livro.objects.filter(criador=usuario)
+	contexto = {
+		'livro_lista': livros
+	}
+	return render(request, 'livros.html', contexto)
 def cadLiv(request):
 	form = LivroForm(request.POST or None, request.FILES or None)
 	if form.is_valid():
-		form.save()
-		return redirect(index)
+		livro = form.save(commit=False)
+		livro.criador = request.user
+		livro.save()
+		for genero in form.cleaned_data['generos']:
+			livro.generos.add(genero)
+		return redirect('perfil')
 	contexto = {
 		'form': form
 	}
@@ -29,10 +41,10 @@ def generos(request):
 	return render(request, 'generos.html', contexto)
 
 def cadGen(request):
-	form = LivroForm(request.POST or None, request.FILES or None)
+	form = GenerosForm(request.POST or None, request.FILES or None)
 	if form.is_valid():
 		form.save()
-		return redirect(index)
+		return redirect('perfil')
 	contexto = {
 		'form': form
 	}
@@ -59,10 +71,11 @@ def registro(request):
 	contexto = {
 	'form': form
 	}
-	return render(request, 'registro.html', contexto)
+	return render(request, 'registration/registro.html', contexto)
 
 def dados(request, id):
 	user = User.objects.get(pk=id)
+
 	form = UserCreationForm(request.POST or None, instance=user)
 	if form.is_valid():
 		form.save()
@@ -70,4 +83,4 @@ def dados(request, id):
 	contexto = {
 	'form': form
 	}
-	return render(request, 'registro.html', contexto)
+	return render(request, 'registration/registro.html', contexto)

@@ -52,6 +52,7 @@
           {% csrf_token %}
           <div class="control-group form-group">
             <div class="controls">
+              {{form.username.errors}}
               <label>Usuário: </label> 
               <p>{{form.username|add_class:"form-control"}}</p> 
               
@@ -60,6 +61,7 @@
           
           <div class="control-group form-group">
             <div class="controls">
+              {{form.password1.errors}}
               <label>Senha: </label> 
               <p>{{form.password1|add_class:"form-control"}}</p> 
               
@@ -68,6 +70,7 @@
 
           <div class="control-group form-group">
             <div class="controls">
+              {{form.password2.errors}}
               <label>Repetir Senha: </label>  
               <p>{{form.password2|add_class:"form-control"}}</p>
             </div>

@@ -33,11 +33,14 @@
               <span class="sr-only">(current)</span>
             </a>
           </li>
+          {% if user.is_authenticated %}
           <li class="nav-item">
               <a class="nav-link" href="{% url 'perfil' %}">Minha conta</a>
           </li>
+          {% endif %}
           
-          </li>
+            
+          
         </ul>
       </div>
     </div>
@@ -50,19 +53,20 @@
 
       <div class="col-lg-3">
 
-        <h1 class="my-4">Lista de Gêneros</h1>
+        <h1 class="my-4">Lista de Livros</h1>
         <div class="list-group">
-        {% for genero in genero_lista %}
-          <a href="#" class="list-group-item">{{genero.nome}}</a>
+        {% for livros in lista_livro %}
+          <p>{{livro.nome}}</p>
         {% empty %}
-            <p>Nenhum gênero cadastrado</p>
+            <p>Nenhum livro cadastrado</p>
         {% endfor %}  
         </div>
-        <a class="nav-link" href="{% url 'cadGen' %}">Novo Cadastro de Gênero</a>
-
+          <a class="nav-link" href="{% url 'cadLiv' %}">Novo Cadastro de Livro</a>
       </div>
       <!-- /.col-lg-3 -->
-
+      
+    </div>
+  </div>    
       <div class="col-lg-9">
 
         

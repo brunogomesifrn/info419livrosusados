@@ -38,16 +38,26 @@
           <li class="nav-item">
             <a class="nav-link" href="{% url 'perfil' %}">Minha conta</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'registro' %}">Cadastro</a>
           </li>          
         </ul>
       </div>
     </div>
   </nav>
-  <p>Olá {{ user.username}}</p>
-  <p><a href="{% url 'dados' user.id %}">Dados Pessoais</a></p>
-  <p><a href="{% url 'logout' %}">Sair</a></p>
+  <div class="container">
 
+    <div class="row">
+
+      <div class="col-lg-3">
+        <h1 class="my-4">Olá {{user.username}}</h1>
+        <p><a class="btn btn-primary" href="{% url 'dados' user.id %}">Dados Pessoais</a></p>
+        </br>
+        <p><a class="btn btn-primary" href="{% url 'generos' %}" >Gêneros</a></p>
+        </br>
+        <p><a class="btn btn-primary" href="{% url 'livros' user.id %}">Livros</a></p>
+        </br>
+        <p><a class="btn btn-primary" href="{% url 'logout' %}">Sair</a></p>
+      </div>
+    </div>
+  </div>      
 </body>
 </html>
