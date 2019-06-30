@@ -15,9 +15,6 @@
 
   <!-- Custom styles for this template -->
   <link href="{% static 'shop-homepage.css' %}" rel="stylesheet">
-
-  <link rel="stylesheet"  href="{% static 'util.css' %}">
-  <link rel="stylesheet"  href="{% static 'main.css' %}">
 </head>
 <body>
 <!-- Navigation -->
@@ -36,9 +33,6 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'perfil' %}">Minha conta</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" href="{% url 'registro' %}">Cadastro</a>
           </li>          
         </ul>
@@ -46,34 +40,29 @@
     </div>
   </nav>
 
-<div class="limiter">
-    <div class="container-login100">
+  <div class="limiter">
+    <div class="container-login100 px-5">
       <div class="wrap-login100 p-t-50 p-b-90">
         <form class="login100-form validate-form flex-sb flex-w"  method="post">
         {% csrf_token %}
-          <span class="login100-form-title p-b-51">
-            Login
-          </span>
-
-          
+          <h3 class="login100-form-title p-b-51 mt-5">Login</h3>
           <div class="wrap-input100 validate-input m-b-16" data-validate = "Username is required">
             {{form.username.errors}}
-            <p>Usuário: {{ form.username }}</p>
+            <p>Usuário: <br />
+            {{form.username|add_class:"form-control"}}</p>
             <span class="focus-input100"></span>
           </div>
           
           
           <div class="wrap-input100 validate-input m-b-16" data-validate = "Password is required">
             {{form.password.errors}}
-            <p>Senha: {{ form.password }}</p>
+            <p>Senha: <br />
+            {{form.password|add_class:"form-control"}}</p>
             <span class="focus-input100"></span>
           </div>
-          
-          
+
           <div class="container-login100-form-btn m-t-17">
-            <button type="submit">
-              Login
-            </button>
+            <button type="submit" class="btn btn-primary" id="sendMessageButton">Login</button>
           </div>
 
         </form>

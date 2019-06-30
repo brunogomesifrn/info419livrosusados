@@ -124,7 +124,7 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = 'media'
 
-LOGIN_REDIRECT_URL = '/perfil/'
+LOGIN_REDIRECT_URL = '/index/'
 
 LOGOUT_REDIRECT_URL = '/index/'
 

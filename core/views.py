@@ -19,6 +19,7 @@ def livros(request, id):
 		'livro_lista': livros
 	}
 	return render(request, 'livros.html', contexto)
+
 def cadLiv(request):
 	form = LivroForm(request.POST or None, request.FILES or None)
 	if form.is_valid():
@@ -27,7 +28,7 @@ def cadLiv(request):
 		livro.save()
 		for genero in form.cleaned_data['generos']:
 			livro.generos.add(genero)
-		return redirect('perfil')
+		return redirect('index')
 	contexto = {
 		'form': form
 	}
@@ -44,16 +45,30 @@ def cadGen(request):
 	form = GenerosForm(request.POST or None, request.FILES or None)
 	if form.is_valid():
 		form.save()
-		return redirect('perfil')
+		return redirect('generos')
 	contexto = {
 		'form': form
 	}
 	return render(request, 'cadGen.html', contexto)
 
+def editar(request, id):
+	user = User.objects.get(pk=id)
+
+	form = UserCreationForm(request.POST or None, instance=user)
+
+	if form.is_valid():
+		form.save()
+		return redirect('perfil')
+
+	contexto = {
+		'form': form
+	}
+	return render(request, 'registration/registro.html', contexto)
+
 def excluir(request, id):
 	livro = Livro.objects.get(pk=id)
 	livro.delete()
-	return('index')
+	return redirect('index')
 
 def login(request):
 	return render(request, 'login.html')

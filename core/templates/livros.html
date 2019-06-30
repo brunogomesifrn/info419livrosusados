@@ -7,8 +7,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
+  <script src="https://kit.fontawesome.com/7395183f1c.js"></script>
 
-  <title>Lista de Gêneros</title>
+  <title>Lista de Livros</title>
 
   <!-- Bootstrap core CSS -->
   <link href="{% static 'bootstrap.min.css' %}" rel="stylesheet">
@@ -35,12 +36,19 @@
           </li>
           {% if user.is_authenticated %}
           <li class="nav-item">
-              <a class="nav-link" href="{% url 'perfil' %}">Minha conta</a>
+              <div class="dropdown">
+                <button class="btn btn-transparent dropdown-toggle nav-link" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  {{user.username}}
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="{% url 'generos' %}">Gêneros</a>
+                  <a class="dropdown-item" href="{% url 'livros' user.id %}">Livros</a>
+                  <a class="dropdown-item" href="{% url 'editar' user.id %}">Editar Dados</a>
+                  <a class="dropdown-item" href="{% url 'logout' %}">Sair</a>
+                </div>
+              </div>
           </li>
           {% endif %}
-          
-            
-          
         </ul>
       </div>
     </div>
@@ -51,15 +59,16 @@
 
     <div class="row">
 
-      <div class="col-lg-12">
+      <div class="col-lg-4">
         <h1 class="my-5">Lista de Livros</h1>
         <div class="list-group">
-        {% for livros in lista_livro %}
-          <p>{{livros.nome}}</p>
+        {% for livros in livro_lista %}
+          <p class="list-group-item">{{livros.nome}} <a class="float-right" href="{% url 'excluir' livros.id %}"><i class="fas fa-times text-danger"></i></a></p>
         {% empty %}
           <p>Nenhum livro cadastrado</p>
         {% endfor %}  
         </div>
+          <br />
           <a class="nav-link" href="{% url 'cadLiv' %}">Novo Cadastro</a>
       </div>
       <!-- /.col-lg-3 -->

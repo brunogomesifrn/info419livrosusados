@@ -35,10 +35,17 @@
           </li>
           {% if user.is_authenticated %}
           <li class="nav-item">
-              <a class="nav-link" href="{% url 'perfil' %}">Meu Perfil</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'logout' %}">Sair</a>
+              <div class="dropdown">
+                <button class="btn btn-transparent dropdown-toggle nav-link" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  {{user.username}}
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="{% url 'generos' %}">Gêneros</a>
+                  <a class="dropdown-item" href="{% url 'livros' user.id %}">Livros</a>
+                  <a class="dropdown-item" href="{% url 'editar' user.id %}">Editar Dados</a>
+                  <a class="dropdown-item" href="{% url 'logout' %}">Sair</a>
+                </div>
+              </div>
           </li>
           {% else %}
           <li class="nav-item">
@@ -55,17 +62,11 @@
 
   <!-- Page Content -->
   <div class="container">
-
     <div class="row">
-      <div class="col-lg-3">
-        <h1 class="my-4">Sebo Online</h1>
-      </div>
-        <div class="row">
        		{% for livro in livro_lista %}
-          	  <div class="col-lg-4 col-md-6 mb-4">
-          	
+          	  <div class="col-lg-4 col-md-6 mb-4 mt-5">
                 <div class="card h-100">             	
-                  <a href="#"><img class="card-img-top" src="/media/{{livro.imagem}}" alt="" width="700px" height="400px"></a>
+                  <a href="#"><img class="card-img-top" src="/media/{{livro.imagem}}" alt="" width="100%" height="auto"></a>
                   <div class="card-body">
                     <h4 class="card-title">
                       <a href="#">{{livro.nome}}</a>
@@ -77,25 +78,12 @@
                     <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
                   </div>
                 </div>
-                
           	  </div>
           {% empty %}
               <p>Nenhum livro cadastrado</p>
           {% endfor %}  
-
-          
-
-        </div>
-        
-        <!-- /.row -->
-
       </div>
-      <!-- /.col-lg-9 -->
-
     </div>
-    <!-- /.row -->
-
-  </div>
   <!-- /.container -->
 
   <!-- Footer -->

@@ -52,8 +52,9 @@
         <h1 class="my-4">Olá, {{user.username}}</h1>
         <p><a class="btn btn-primary" href="{% url 'generos' %}" >Gêneros</a></p>
         </br>
-        <p><a class="btn btn-primary" href="{% url 'livros' user.id %}">Seus Livros</a></p>
+        <p><a class="btn btn-primary" href="{% url 'livros' user.id %}">Livros</a></p>
         </br>
+        <p><a class="btn btn-primary" href="{% url 'editar' user.id %}">Editar Dados</a></p>
       </div>
     </div>
   </div>      

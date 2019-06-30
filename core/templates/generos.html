@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
+  <script src="https://kit.fontawesome.com/7395183f1c.js"></script>
 
   <title>Lista de Gêneros</title>
 
@@ -34,7 +35,17 @@
             </a>
           </li>
           <li class="nav-item">
-              <a class="nav-link" href="{% url 'perfil' %}">Minha conta</a>
+              <div class="dropdown">
+                <button class="btn btn-transparent dropdown-toggle nav-link" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  {{user.username}}
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="{% url 'generos' %}">Gêneros</a>
+                  <a class="dropdown-item" href="{% url 'livros' user.id %}">Livros</a>
+                  <a class="dropdown-item" href="{% url 'editar' user.id %}">Editar Dados</a>
+                  <a class="dropdown-item" href="{% url 'logout' %}">Sair</a>
+                </div>
+              </div>
           </li>
           
           </li>
@@ -52,7 +63,7 @@
         <h1 class="my-5">Lista de Gêneros</h1>
         <div class="list-group">
         {% for genero in lista_generos %}
-          <p href="#" class="list-group-item">{{genero.nome}}</p>
+          <p class="list-group-item">{{genero.nome}} <a class="float-right" href="{% url 'excluir' genero.id %}"><i class="fas fa-times text-danger"></i></a></p></p>
         {% empty %}
           <p>Nenhum gênero cadastrado</p>
         {% endfor %}  

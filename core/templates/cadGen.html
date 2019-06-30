@@ -33,11 +33,21 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'perfil' %}">Minha conta</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" href="{% url 'generos' %}">Lista de Gêneros</a>
-          </li>          
+          </li> 
+          <li class="nav-item">
+            <div class="dropdown">
+                <button class="btn btn-transparent dropdown-toggle nav-link" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  {{user.username}}
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="{% url 'generos' %}">Gêneros</a>
+                  <a class="dropdown-item" href="{% url 'livros' user.id %}">Livros</a>
+                  <a class="dropdown-item" href="{% url 'editar' user.id %}">Editar Dados</a>
+                  <a class="dropdown-item" href="{% url 'logout' %}">Sair</a>
+                </div>
+            </div>
+          </li>         
         </ul>
       </div>
     </div>
@@ -46,7 +56,7 @@
 <div class="container">
 
     <!-- Page Heading/Breadcrumbs -->
-    <h1 class="mt-12 mb-12">Cadastro de Gêneros</h1>
+    <h1 class="mt-12 mb-12 mt-4">Cadastro de Gêneros</h1>
 
    <hr />
 
@@ -66,8 +76,10 @@
         </form>
       </div>
     </div>
-    <!-- /.row -->
-
+    <script src="{% static 'jquery.min.js' %}"></script>
+    <script src="{% static 'jquery.slim.min.js' %}"></script>
+    <script src="{% static 'bootstrap.min.js' %}"></script>
+    <script src="{% static 'bootstrap.bundle.min.js' %}"></script>
   </div>
 </body>
 </html>

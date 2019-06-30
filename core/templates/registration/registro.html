@@ -33,6 +33,20 @@
               <span class="sr-only">(current)</span>
             </a>
           </li>
+          <li class="nav-item active">
+            <div class="dropdown">
+                <button class="btn btn-transparent dropdown-toggle nav-link" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  {{user.username}}
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="{% url 'generos' %}">Gêneros</a>
+                  <a class="dropdown-item" href="{% url 'livros' user.id %}">Livros</a>
+                  <a class="dropdown-item" href="{% url 'editar' user.id %}">Editar Dados</a>
+                  <a class="dropdown-item" href="{% url 'logout' %}">Sair</a>
+                </div>
+              </div>
+            </a>
+          </li>
           <li class="nav-item">
             {% if not user.is_authenticated %}
             <a class="nav-link" href="{% url 'login' %}">Login</a>
@@ -42,7 +56,7 @@
       </div>
     </div>
   </nav>
-  <div class="row">
+    <div class="row">
       <div class="col-lg-12 px-5">
       <h3 class="mt-5">Cadastro:</h3>
         <form method="POST" enctype="multipart/form-data">
