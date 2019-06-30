@@ -51,17 +51,16 @@
 
     <div class="row">
 
-      <div class="col-lg-3">
-
-        <h1 class="my-4">Lista de Livros</h1>
+      <div class="col-lg-12">
+        <h1 class="my-5">Lista de Livros</h1>
         <div class="list-group">
         {% for livros in lista_livro %}
-          <p>{{livro.nome}}</p>
+          <p>{{livros.nome}}</p>
         {% empty %}
-            <p>Nenhum livro cadastrado</p>
+          <p>Nenhum livro cadastrado</p>
         {% endfor %}  
         </div>
-          <a class="nav-link" href="{% url 'cadLiv' %}">Novo Cadastro de Livro</a>
+          <a class="nav-link" href="{% url 'cadLiv' %}">Novo Cadastro</a>
       </div>
       <!-- /.col-lg-3 -->
       
