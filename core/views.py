@@ -34,9 +34,9 @@ def cadLiv(request):
 	return render(request, 'cadLiv.html', contexto)
 
 def generos(request):	
-	livros = Livro.objects.all()
+	generos = Generos.objects.all()
 	contexto = {
-		'lista_livro': livros
+		'lista_generos': generos
 	}
 	return render(request, 'generos.html', contexto)
 

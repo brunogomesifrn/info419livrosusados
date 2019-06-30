@@ -48,18 +48,17 @@
 
     <div class="row">
 
-      <div class="col-lg-3">
-
-        <h1 class="my-4">Lista de Gêneros</h1>
+      <div class="col-lg-4">
+        <h1 class="my-5">Lista de Gêneros</h1>
         <div class="list-group">
-        {% for genero in genero_lista %}
-          <a href="#" class="list-group-item">{{genero.nome}}</a>
+        {% for genero in lista_generos %}
+          <p href="#" class="list-group-item">{{genero.nome}}</p>
         {% empty %}
-            <p>Nenhum gênero cadastrado</p>
+          <p>Nenhum gênero cadastrado</p>
         {% endfor %}  
         </div>
-        <a class="nav-link" href="{% url 'cadGen' %}">Novo Cadastro de Gênero</a>
-
+        <br />
+        <a class="nav-link" href="{% url 'cadGen' %}">Novo Cadastro</a>
       </div>
       <!-- /.col-lg-3 -->
 
