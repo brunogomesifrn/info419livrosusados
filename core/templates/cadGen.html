@@ -33,10 +33,13 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'perfil' %}">Minha conta</a>
+            <a class="nav-link" href="{% url 'perfil' %}">{{user.username}}</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'generos' %}">Lista de Gêneros</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}">Sair</a>
           </li>          
         </ul>
       </div>
@@ -69,5 +72,9 @@
     <!-- /.row -->
 
   </div>
+  <script src="{% static 'jquery.min.js' %}"></script>
+  <script src="{% static 'jquery.slim.min.js' %}"></script>
+  <script src="{% static 'bootstrap.min.js' %}"></script>
+  <script src="{% static 'bootstrap.bundle.min.js' %}"></script>
 </body>
 </html>

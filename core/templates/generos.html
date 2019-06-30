@@ -34,9 +34,10 @@
             </a>
           </li>
           <li class="nav-item">
-              <a class="nav-link" href="{% url 'perfil' %}">Minha conta</a>
+              <a class="nav-link" href="{% url 'perfil' %}">{{user.username}}</a>
           </li>
-          
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}">Sair</a>
           </li>
         </ul>
       </div>
