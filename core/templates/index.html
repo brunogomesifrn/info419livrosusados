@@ -73,7 +73,7 @@
                     </h4>
                     <h5>R${{livro.preco}}</h5>
                     <br />
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#livro-detalhes"data-nome="{{livro.nome}}" data-autor="{{livro.autor}}" data-generos="{% for genero in livro.generos.all %}{{genero}}{% if not forloop.last %}, {% endif %}{% endfor %}" data-preco="{{livro.preco}}">Detalhes</button>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#livro-detalhes"data-nome="{{livro.nome}}" data-autor="{{livro.autor}}" data-generos="{% for genero in livro.generos.all %}{{genero}}{% if not forloop.last %}, {% endif %}{% endfor %}" data-preco="{{livro.preco}}" data-criador="{{livro.criador.username}}">Detalhes</button>
                   </div>
                   <div class="card-footer">
                     <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
@@ -108,7 +108,7 @@
         <p>Autor: <span data="autor"></span> </p>
         <p>Gênero: <span data="generos"></span> </p>
         <p>Preço: R$ <span data="preco"></span></p>
-        
+        <p>Vendedor: <span data="criador"></span></p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
@@ -129,15 +129,16 @@
         var nome = button.data('nome')
         var autor = button.data('autor')
         var generos = button.data('generos')
-        var preco = button.data('preco') // Extrai informação dos atributos data-*
-        // Se necessário, você pode iniciar uma requisição AJAX aqui e, então, fazer a atualização em um callback.
-        // Atualiza o conteúdo do modal. Nós vamos usar jQuery, aqui. No entanto, você poderia usar uma biblioteca de data binding ou outros métodos.
+        var preco = button.data('preco')
+        var criador = button.data('criador') 
+
         var modal = $(this)
         modal.find('span[data=imagem]').text(imagem)
         modal.find('span[data=nome]').text(nome)
         modal.find('span[data=autor]').text(autor)
         modal.find('span[data=generos]').text(generos)
         modal.find('span[data=preco]').text(preco)
+        modal.find('span[data=criador]').text(criador)
       })
     })
   </script>
