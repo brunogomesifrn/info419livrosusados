@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Sebo Online</title>
+  <title>Cadastro</title>
 
   <!-- Bootstrap core CSS -->
   <link href="{% static 'bootstrap.min.css' %}" rel="stylesheet">
@@ -19,7 +19,6 @@
 </head>
 <body>
 <!-- Navigation -->
-
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
       <a class="navbar-brand" href="{% url 'index' %}">Sebo Online</a>
@@ -33,6 +32,7 @@
               <span class="sr-only">(current)</span>
             </a>
           </li>
+          {% if user.is_authenticated %}
           <li class="nav-item active">
             <div class="dropdown">
                 <button class="btn btn-transparent dropdown-toggle nav-link" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -48,10 +48,9 @@
             </a>
           </li>
           <li class="nav-item">
-            {% if not user.is_authenticated %}
             <a class="nav-link" href="{% url 'login' %}">Login</a>
-            {% endif %}
-          </li>         
+          </li>                    
+          {% endif %}
         </ul>
       </div>
     </div>
@@ -93,6 +92,9 @@
       </div>
     </div>  
   
-
+  <script src="{% static 'jquery.min.js' %}"></script>
+  <script src="{% static 'jquery.slim.min.js' %}"></script>
+  <script src="{% static 'bootstrap.min.js' %}"></script>
+  <script src="{% static 'bootstrap.bundle.min.js' %}"></script>
 </body>
 </html>

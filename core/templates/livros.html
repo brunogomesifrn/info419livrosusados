@@ -63,7 +63,7 @@
         <h1 class="my-5">Lista de Livros</h1>
         <div class="list-group">
         {% for livros in livro_lista %}
-          <p class="list-group-item">{{livros.nome}} <a class="float-right" href="{% url 'excluir' livros.id %}"><i class="fas fa-times text-danger"></i></a></p>
+          <p class="list-group-item mb-3">{{livros.nome}} <a class="float-right" href="{% url 'excluir' livros.id %}"><i class="fas fa-times text-danger"></i></a></p>
         {% empty %}
           <p>Nenhum livro cadastrado</p>
         {% endfor %}  

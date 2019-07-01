@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Sebo Online</title>
+  <title>Login</title>
 
   <!-- Bootstrap core CSS -->
   <link href="{% static 'bootstrap.min.css' %}" rel="stylesheet">
@@ -31,6 +31,9 @@
             <a class="nav-link" href="{% url 'index' %}">Início
               <span class="sr-only">(current)</span>
             </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'perfil' %}">{{user.username}}</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'registro' %}">Cadastro</a>
@@ -69,5 +72,9 @@
       </div>
     </div>
   </div>
+  <script src="{% static 'jquery.min.js' %}"></script>
+  <script src="{% static 'jquery.slim.min.js' %}"></script>
+  <script src="{% static 'bootstrap.min.js' %}"></script>
+  <script src="{% static 'bootstrap.bundle.min.js' %}"></script>
 </body>
 </html>

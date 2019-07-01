@@ -74,9 +74,6 @@ def login(request):
 	return render(request, 'login.html')
 
 @login_required
-def perfil(request):
-	return render(request, 'perfil.html')
-
 
 def registro(request):
 	form = UserCreationForm(request.POST or None)
