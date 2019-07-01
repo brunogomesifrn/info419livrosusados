@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from core.views import index, cadLiv, excluir, login, registro, dados, generos, cadGen, livros, editar
+from core.views import index, cadLiv, excluir, login, registro, dados, generos, cadGen, livros, editar, excluirGen
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
@@ -24,10 +24,11 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('index/', index, name='index'),
     path('cadLiv/', cadLiv, name='cadLiv'),
-    path('generos/', generos, name='generos'),
+    path('generos/<int:id>/', generos, name='generos'),
     path('cadGen/', cadGen, name='cadGen'),
     path('editar/<int:id>/', editar, name='editar'),
     path('excluir/<int:id>/', excluir, name="excluir"),
+    path('excluirGen/<int:id>/', excluirGen, name="excluirGen"),
     path('login/', auth_views.LoginView.as_view(), name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('livros/<int:id>/', livros, name='livros'),

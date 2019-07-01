@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 class Generos(models.Model):
 	nome = models.CharField('Nome', max_length=100)
+	criador = models.ForeignKey(User, on_delete=models.CASCADE)
 
 	def __str__(self):
 		return self.nome

@@ -34,8 +34,9 @@ def cadLiv(request):
 	}
 	return render(request, 'cadLiv.html', contexto)
 
-def generos(request):	
-	generos = Generos.objects.all()
+def generos(request, id):	
+	usuario = User.objects.get(pk=id)
+	generos = Generos.objects.filter(criador=usuario)
 	contexto = {
 		'lista_generos': generos
 	}
@@ -44,8 +45,10 @@ def generos(request):
 def cadGen(request):
 	form = GenerosForm(request.POST or None, request.FILES or None)
 	if form.is_valid():
-		form.save()
-		return redirect('generos')
+		generos = form.save(commit=False)
+		generos.criador = request.user
+		generos.save()
+		return redirect('generos', generos.criador.id)
 	contexto = {
 		'form': form
 	}
@@ -58,7 +61,7 @@ def editar(request, id):
 
 	if form.is_valid():
 		form.save()
-		return redirect('perfil')
+		return redirect('index')
 
 	contexto = {
 		'form': form
@@ -70,10 +73,13 @@ def excluir(request, id):
 	livro.delete()
 	return redirect('index')
 
+def excluirGen(request, id):
+	generos = Generos.objects.get(pk=id)
+	generos.delete()
+	return redirect('generos', generos.criador.id)
+
 def login(request):
 	return render(request, 'login.html')
-
-@login_required
 
 def registro(request):
 	form = UserCreationForm(request.POST or None)
